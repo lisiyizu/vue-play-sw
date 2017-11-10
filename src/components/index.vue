@@ -1,24 +1,20 @@
 <template>
-  <div>
+  <div v-loading.body="visible" loading-text="加载中....">
     index
-    <div @click="alert">
-      提示
-    </div>
   </div>
 </template>
 
 <script>
-import toast from 'kf-component-vue/lib/toast'
-import 'kf-component-vue/lib/toast/style.css'
 export default {
   data () {
     return {
+      visible: true
     }
   },
+  mounted () {
+    this.$$toast('提示')
+  },
   methods: {
-    alert () {
-      toast('提示')
-    }
   }
 }
 </script>

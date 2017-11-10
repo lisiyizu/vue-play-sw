@@ -1,5 +1,5 @@
 <template>
-  <div v-loading.body="visible" loading-text="加载中....">
+  <div v-loading.body="false" loading-text="加载中....">
     index
   </div>
 </template>
@@ -8,7 +8,6 @@
 export default {
   data () {
     return {
-      visible: true
     }
   },
   mounted () {

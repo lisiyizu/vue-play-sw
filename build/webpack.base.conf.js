@@ -4,8 +4,6 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -74,16 +72,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-  // copy sw.js path.resolve(__dirname, ‘sw.js所在路径’)
-    new CopyWebpackPlugin(
-      [
-        {
-          from: path.resolve(__dirname, '../src/serviceWorker/sw.js'),
-          to: config.build.assetsRoot,
-          ignore: ['.*']
-        }
-      ])
-  ]
+  }
 }

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import '@/assets/css/main.scss'
 import install from '@/plugin/install.js'
 
@@ -14,6 +15,7 @@ Vue.use(install)
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

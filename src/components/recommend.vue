@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { Swipe, SwipeItem } from 'mint-ui'
 import api from '../fetch/api'
 
@@ -52,8 +53,13 @@ export default {
     async radio (index) {
       let radioId = this.radioList[index].radioid
       let res = await this.jsonp(api.radio(radioId))
-      console.log(res)
+      let data = res.data
+      this.$store.commit('radio', data)
     }
+  },
+  computed: {
+    ...mapState(['song']),
+    ...mapState(['playList'])
   },
   components: {
     'mt-swipe': Swipe,
@@ -78,6 +84,7 @@ export default {
     line-height: rem(100);
     font-size: rem(32);
     background: #fff;
+    color: #666;
   }
 
   ul {
@@ -108,6 +115,7 @@ export default {
         height: rem(80);
         font-size: rem(28);
         padding-left: rem(10);
+        color: #666;
       }
     }
   }

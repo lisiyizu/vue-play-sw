@@ -10,6 +10,21 @@ export default new Router({
       path: '/',
       name: 'index',
       component: index
+    },
+    {
+      path: '/recommend',
+      name: 'index',
+      component: index
+    },
+    {
+      path: '/topList',
+      name: 'index',
+      component: index
+    },
+    {
+      path: '/search',
+      name: 'index',
+      component: index
     }
   ]
 })

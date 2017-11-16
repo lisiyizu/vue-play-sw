@@ -1,16 +1,23 @@
 <template>
   <div class="index">
-    <!-- <audio ref="audio" src="//ws.stream.qqmusic.qq.com/C1000023O1LH0Ha1OO.m4a?fromtag=0"></audio> -->
     <header class="header">
       <i class="iconfont icon-icon-test"></i>
       <h2>vue-play</h2>
     </header>
 
     <div class="tabs">
-      <div class="tab" :class="{ active: currentIndex === index }" v-for="(tab, index) in tabs" @click="currentIndex = index">{{tab.text}}</div>
+      <div class="tab" :class="{ active: currentIndex === index }" v-for="(tab, index) in tabs" @click="switchTab(index)">
+        {{tab.text}}
+      </div>
     </div>
 
-    <recommend></recommend>
+    <recommend v-if="currentIndex === 0"></recommend>
+
+    <topList v-if="currentIndex === 1"></topList>
+
+    <search v-if="currentIndex === 2"></search>
+
+    <play></play>
   </div>
 </template>
 
@@ -18,34 +25,59 @@
 import recommend from '@/components/recommend.vue'
 import search from '@/components/search.vue'
 import topList from '@/components/topList.vue'
+import play from '@/components/play.vue'
 
 export default {
   data () {
     return {
       tabs: [
         {
-          text: '推荐'
+          text: '推荐',
+          path: '/recommend',
+          index: 0
         },
         {
-          text: '排行榜'
+          text: '排行榜',
+          path: '/topList',
+          index: 1
         },
         {
-          text: '搜索'
+          text: '搜索',
+          path: '/search',
+          index: 2
         }
       ],
       currentIndex: 0
     }
   },
   mounted () {
+    this.routeSet()
   },
   computed: {
   },
   methods: {
+    routeSet () {
+      let path = this.$route.path
+      for (let val of this.tabs) {
+        if (val.path === path) {
+          this.currentIndex = val.index
+        }
+      }
+    },
+    switchTab (index) {
+      this.currentIndex = index
+      for (let val of this.tabs) {
+        if (val.index === index) {
+          this.$router.replace({ path: val.path })
+        }
+      }
+    }
   },
   components: {
     recommend,
     topList,
-    search
+    search,
+    play
   }
 }
 </script>
@@ -59,7 +91,9 @@ export default {
   justify-content: center;
   align-items: center;
   height: rem(90);
-  background-color: $green;
+  background-color: #000;
+  color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 
   i {
     font-size: rem(40);
@@ -85,6 +119,7 @@ export default {
     font-size: rem(30);
     transition: all 0.4s;
     border: 2px solid rgba(0,0,0,0);
+    color: #666;
   }
 
   .active {

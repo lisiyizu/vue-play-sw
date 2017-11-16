@@ -7,8 +7,8 @@ const url = {
     return `//c.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg?labelid=${radioId}&format=jsonp`
   },
 
-  lyric () {
-    return `//c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?nobase64=1&musicid=5026333&songtype=0&callback=jsonp1`
+  lyric (id) {
+    return `//c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?nobase64=1&musicid=${id}&songtype=0&callback=jsonp1`
   },
 
   song: (songmid) => {
@@ -22,6 +22,8 @@ const url = {
   searchlist: (keywords, page) => {
     return `//c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?w=${keywords}&p=${page}&n=30`
   }
+
+  // http://music.qq.com/miniportal/static/lyric/34/101125834.xml
 }
 
 export default url

@@ -11,6 +11,10 @@ const url = {
     return `//c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?nobase64=1&musicid=${id}&songtype=0&callback=jsonp1`
   },
 
+  topList_songList (id) {
+    return `//c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?topid=${id}`
+  },
+
   song: (songmid) => {
     return `//ws.stream.qqmusic.qq.com/C100${songmid}.m4a?fromtag=0`
   },

@@ -1,14 +1,27 @@
 <template>
-  <div>
-    <list-item></list-item>
+  <div class="topList">
+    <list-item v-for="(list,index) in lists" :key="index" :list="list"></list-item>
   </div>
 </template>
 
 <script>
-import item from './common/listItem.vue'
+import api from '@/fetch/api'
+import item from './topList/listItem.vue'
 export default {
   data () {
     return {
+      lists: []
+    }
+  },
+  async mounted () {
+    let res = await this.jsonp(api.topList)
+    this.lists = res.data.topList
+  },
+  methods: {
+    async jsonp (url) {
+      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback' })
+      let res = await pro.data
+      return res
     }
   },
   components: {
@@ -17,5 +30,10 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+@import "../assets/css/rem.scss";
+
+.topList {
+  margin-bottom: rem(150);
+}
 </style>

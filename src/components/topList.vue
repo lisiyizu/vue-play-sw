@@ -1,5 +1,5 @@
 <template>
-  <div class="topList">
+  <div class="topList" v-loading.body.noMask="visible">
     <list-item v-for="(list,index) in lists" :key="index" :list="list"></list-item>
   </div>
 </template>
@@ -10,12 +10,17 @@ import item from './topList/listItem.vue'
 export default {
   data () {
     return {
+      visible: true,
       lists: []
     }
   },
   async mounted () {
     let res = await this.jsonp(api.topList)
     this.lists = res.data.topList
+
+    this.$nextTick(() => {
+      this.visible = false
+    })
   },
   methods: {
     async jsonp (url) {
@@ -34,6 +39,6 @@ export default {
 @import "../assets/css/rem.scss";
 
 .topList {
-  margin-bottom: rem(150);
+  padding-bottom: rem(150);
 }
 </style>

@@ -16,7 +16,7 @@ const url = {
   },
 
   song: (songmid) => {
-    return `//ws.stream.qqmusic.qq.com/C100${songmid}.m4a?fromtag=0`
+    return `http://ws.stream.qqmusic.qq.com/C100${songmid}.m4a?fromtag=0`
   },
 
   album: (albummid) => {

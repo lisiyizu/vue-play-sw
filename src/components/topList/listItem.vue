@@ -42,6 +42,7 @@ export default {
       let id = this.list.id
       let res = await this.jsonp(api.topList_songList(id))
       console.log(res)
+      this.$router.push({ name: 'listPage' })
     }
   }
 }

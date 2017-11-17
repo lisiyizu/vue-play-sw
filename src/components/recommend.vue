@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading.body.noMask="visible">
     <div class="swipe">
       <mt-swipe>
         <mt-swipeItem v-for="(item,index) in slider" :key="index">
@@ -34,6 +34,7 @@ import api from '../fetch/api'
 export default {
   data () {
     return {
+      visible: true,
       slider: {},
       radioList: {}
     }
@@ -43,6 +44,10 @@ export default {
     let data = recom.data
     this.slider = data.slider
     this.radioList = data.radioList
+
+    this.$nextTick(() => {
+      this.visible = false
+    })
   },
   methods: {
     async jsonp (url) {

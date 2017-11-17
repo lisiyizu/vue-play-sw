@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from './index/index.vue'
+import listPage from './listPage/index.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/search',
       name: 'index',
       component: index
+    },
+    {
+      path: '/topList/listPage',
+      name: 'listPage',
+      component: listPage
     }
   ]
 })

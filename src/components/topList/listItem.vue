@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import api from '@/fetch/api'
 export default {
   data () {
     return {
@@ -40,9 +39,7 @@ export default {
     },
     async jump_list () {
       let id = this.list.id
-      let res = await this.jsonp(api.topList_songList(id))
-      console.log(res)
-      this.$router.push({ name: 'listPage' })
+      this.$router.push({ name: 'listPage', query: { topid: id } })
     }
   }
 }

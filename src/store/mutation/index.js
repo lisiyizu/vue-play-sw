@@ -1,5 +1,7 @@
 const mutation = {
   radio (state, data) {
+    state.playList = []
+
     for (let i = 0; i < data.length; i++) {
       state.playList[i] = {
         albummid: data[i].album.mid,
@@ -40,6 +42,26 @@ const mutation = {
     } else {
       index++
     }
+    state.song = state.playList[index]
+  },
+
+  topList (state, songList) {
+    state.playList = []
+
+    for (let i = 0; i < songList.length; i++) {
+      let data = songList[i].data
+      state.playList[i] = {
+        albummid: data.albummid,
+        songmid: data.songmid,
+        songname: data.songname,
+        singername: data.singer[0].name,
+        status: true,
+        index: i
+      }
+    }
+  },
+
+  switchSong (state, index) {
     state.song = state.playList[index]
   }
 }

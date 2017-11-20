@@ -77,10 +77,18 @@ export default {
       }
     },
     previous () {
-      this.$store.commit('previous')
+      if (this.song.songmid) {
+        this.$store.commit('previous')
+      } else {
+        this.$$toast('播放列表暂无歌曲')
+      }
     },
     next () {
-      this.$store.commit('next')
+      if (this.song.songmid) {
+        this.$store.commit('next')
+      } else {
+        this.$$toast('播放列表暂无歌曲')
+      }
     }
   },
   computed: {

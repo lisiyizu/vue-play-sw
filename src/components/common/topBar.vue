@@ -17,17 +17,11 @@ export default {
       default () {
         return 'title'
       }
-    },
-    link: {
-      type: String,
-      default () {
-        return '#'
-      }
     }
   },
   methods: {
     back () {
-      this.$router.replace({ path: `${this.link}` })
+      this.$router.go(-1)
     }
   }
 }

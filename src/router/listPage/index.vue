@@ -1,6 +1,6 @@
 <template>
   <div class="listpage" v-loading.body.noMask="visible">
-    <topBar title="topList" link="/topList"></topBar>
+    <topBar title="topList"></topBar>
 
     <div class="info">
 

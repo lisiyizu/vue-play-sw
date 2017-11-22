@@ -1,11 +1,12 @@
 <template>
   <div class="search" v-loading.body.noMask="visible">
     <mt-search
-          v-model="value"
-          cancel-text="取消"
-          placeholder="搜索歌曲、歌单、专辑"
-          autofocus
-          @keyup.native.enter="search">
+      ref="list"
+      v-model="value"
+      cancel-text="取消"
+      placeholder="搜索歌曲、歌单、专辑"
+      autofocus
+      @keyup.native.enter="search">
       <mt-cell
             v-for="(item,index) in result"
             :title="item.songname"
@@ -13,7 +14,7 @@
             :key="index"
             @click.native="listen(index)">
       </mt-cell>
-      <div id="tempBot"></div>
+      <div ref="tempBot"></div>
     </mt-search>
   </div>
 </template>
@@ -31,8 +32,6 @@ export default {
     }
   },
   mounted () {
-    this.scroll()
-
     this.$nextTick(() => {
       this.visible = false
     })
@@ -43,25 +42,15 @@ export default {
       let res = await pro.data
       return res
     },
-    scroll () {
-      // window.onscroll = async () => {
-      //   let height = document.getElementById('tempBot').offsetTop
-      //   if (height <= document.body.scrollTop + window.screen.height - 140) {
-      //     this.page++
-      //     let keywords = this.value
-      //     let res = await this.jsonp(api.searchlist(keywords, this.page))
-      //     this.result = this.result.concat(res.data.song.list)
-      //     console.log(this.result)
-      //
-      //     this.$store.commit('addSearch', this.result)
-      //   }
-      // }
-    },
     async search () {
       let keywords = this.value
-      let res = await this.jsonp(api.searchlist(keywords, this.page))
-      this.result = res.data.song.list
-      console.log(this.result)
+
+      for (let i = 0; i < 19; i++) {
+        this.page++
+        let res = await this.jsonp(api.searchlist(keywords, this.page))
+        this.result = this.result.concat(res.data.song.list)
+      }
+
       this.$store.commit('addSearch', this.result)
     },
     listen (index) {

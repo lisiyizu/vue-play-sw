@@ -9,7 +9,8 @@ const mutation = {
         songname: data[i].name,
         singername: data[i].singer[0].name,
         status: true,
-        index: i
+        index: i,
+        currentTime: 0
       }
     }
     state.song = state.playList[0]
@@ -56,13 +57,29 @@ const mutation = {
         songname: data.songname,
         singername: data.singer[0].name,
         status: true,
-        index: i
+        index: i,
+        currentTime: 0
       }
     }
   },
 
   switchSong (state, index) {
     state.song = state.playList[index]
+  },
+
+  addSearch (state, result) {
+    for (let i = 0; i < result.length; i++) {
+      let data = result[i]
+      state.playList[i] = {
+        albummid: data.albummid,
+        songmid: data.songmid,
+        songname: data.songname,
+        singername: data.singer[0].name,
+        status: true,
+        index: i,
+        currentTime: 0
+      }
+    }
   }
 }
 

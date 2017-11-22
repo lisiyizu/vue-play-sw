@@ -35,7 +35,6 @@
       </ul>
     </div>
 
-    <play></play>
   </div>
 </template>
 
@@ -43,7 +42,6 @@
 import { mapState } from 'vuex'
 import api from '@/fetch/api'
 import topBar from '@/components/common/topBar.vue'
-import play from '@/components/play.vue'
 export default {
   data () {
     return {
@@ -56,7 +54,6 @@ export default {
   async mounted () {
     let id = this.$route.query.topid
     let res = await this.jsonp(api.topList_songList(id))
-    console.log(res)
 
     this.topList = res
     this.songList = res.songlist
@@ -64,7 +61,9 @@ export default {
 
     this.$store.commit('topList', this.songList)
 
-    this.visible = false
+    this.$nextTick(() => {
+      this.visible = false
+    })
   },
   methods: {
     async jsonp (url) {
@@ -81,8 +80,7 @@ export default {
     ...mapState(['playList'])
   },
   components: {
-    topBar,
-    play
+    topBar
   }
 }
 </script>

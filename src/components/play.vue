@@ -2,7 +2,7 @@
   <div>
     <audio :src="songUrl" ref="audio"></audio>
 
-    <div class="playBar" v-if="playBar">
+    <div class="playBar">
       <div class="content">
         <img :src="albumUrl" />
         <h3>{{songname}}</h3>
@@ -27,22 +27,16 @@ export default {
       songUrl: '',
       albumUrl: '',
       songname: '',
-      playBar: true,
       logoClass: ''
     }
   },
   mounted () {
     this.update()
     this.listenEnd()
-    this.logoClass = 'mid iconfont icon-zanting1'
   },
   watch: {
     song () {
       this.update()
-      setTimeout(() => {
-        this.$refs.audio.play()
-        this.song.status = false
-      }, 100)  // 防止快速切换歌曲的时候报错
     }
   },
   methods: {
@@ -52,10 +46,17 @@ export default {
       }
     },
     update () {
-      this.logoClass = 'mid iconfont icon-zanting4'
       if (this.song.songmid) {
+        this.logoClass = 'mid iconfont icon-zanting4'
+        this.song.status = false
         this.songUrl = api.song(this.song.songmid)
+
+        setTimeout(() => {
+          this.$refs.audio.play()
+        }, 100)
       } else {
+        this.logoClass = 'mid iconfont icon-zanting1'
+        this.song.status = true
         this.$refs.audio.removeAttribute('src')
       }
       this.song.songname ? this.songname = this.song.songname : this.songname = 'Vue Music'

@@ -17,7 +17,6 @@
 
     <search v-if="currentIndex === 2"></search>
 
-    <play></play>
   </div>
 </template>
 
@@ -25,7 +24,6 @@
 import recommend from '@/components/recommend.vue'
 import search from '@/components/search.vue'
 import topList from '@/components/topList.vue'
-import play from '@/components/play.vue'
 
 export default {
   data () {
@@ -76,8 +74,7 @@ export default {
   components: {
     recommend,
     topList,
-    search,
-    play
+    search
   }
 }
 </script>

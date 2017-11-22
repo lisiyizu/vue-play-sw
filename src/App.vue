@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view></router-view>
+    <play></play>
   </div>
 </template>
 
 <script>
+import play from '@/components/play.vue'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    play
+  }
 }
 </script>
 

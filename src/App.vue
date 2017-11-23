@@ -25,5 +25,6 @@ export default {
   max-width: 7.5rem;
   min-height: 13rem;
   background-color: #f4f4f4;
+  margin: 0 auto;
 }
 </style>

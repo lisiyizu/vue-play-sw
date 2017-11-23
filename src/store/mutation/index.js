@@ -67,6 +67,10 @@ const mutation = {
     state.song = state.playList[index]
   },
 
+  clearPlayList (state) {
+    state.playList = []
+  },
+
   addSearch (state, result) {
     for (let i = 0; i < result.length; i++) {
       let data = result[i]

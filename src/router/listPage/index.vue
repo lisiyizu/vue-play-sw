@@ -1,5 +1,5 @@
 <template>
-  <div class="listpage" v-loading.body.noMask="visible">
+  <div class="listpage">
     <topBar title="topList"></topBar>
 
     <div class="info">
@@ -45,7 +45,6 @@ import topBar from '@/components/common/topBar.vue'
 export default {
   data () {
     return {
-      visible: true,
       topList: {},
       songList: [],
       topinfo: {}
@@ -61,9 +60,9 @@ export default {
 
     this.$store.commit('topList', this.songList)
 
-    this.$nextTick(() => {
-      this.visible = false
-    })
+    // this.$nextTick(() => {
+    //   this.visible = false
+    // })
   },
   methods: {
     async jsonp (url) {

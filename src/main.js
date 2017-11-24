@@ -24,12 +24,13 @@ new Vue({
 
 // serviceWorker
 
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('sw.js', {
-//     scope: '/'
-//   }).then(function (registration) {
-//     console.log('success', registration)
-//   }).catch(function (err) {
-//     console.log(err)
-//   })
-// }
+if ('serviceWorker' in navigator) {
+  console.log('service-worker.js 第八次修改, 去掉loading')
+  navigator.serviceWorker.register('service-worker.js', {
+    scope: '/vue-play-pwa/'
+  }).then(function (registration) {
+    console.log('success', registration)
+  }).catch(function (err) {
+    console.log(err)
+  })
+}

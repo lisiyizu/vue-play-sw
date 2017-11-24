@@ -1,5 +1,5 @@
 <template>
-  <div class="search" v-loading.body.noMask="visible">
+  <div class="search">
     <div class="head">
       <i class="iconfont icon-sousuo1" @click="search"></i>
       <input class="input" type="text" placeholder="搜索歌曲、歌单、专辑" v-model="value" @keyup.13="search"/>
@@ -28,16 +28,15 @@ import api from '../fetch/api'
 export default {
   data () {
     return {
-      visible: true,
       value: '',
       result: [],
       page: 1
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      this.visible = false
-    })
+    // this.$nextTick(() => {
+    //   this.visible = false
+    // })
   },
   methods: {
     async jsonp (url) {

@@ -8,6 +8,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 const env = process.env.NODE_ENV === 'testing'
@@ -98,7 +99,21 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'vue-play-sw',
+      filename: 'service-worker.js',
+      staticFileGlobs: [
+        'dist/**/*.{js,html,css,svg,png,json}'
+      ],
+      minify: true,
+      stripPrefix: 'dist/',
+      runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /[.]fcg/
+      }]
+    })
   ]
 })
 

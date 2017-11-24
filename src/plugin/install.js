@@ -1,11 +1,7 @@
-import 'kf-component-vue/lib/loading/style.css'
-import { loadingDirective } from 'kf-component-vue/lib/loading'
-
-import 'kf-component-vue/lib/toast/style.css'
-import toast from 'kf-component-vue/lib/toast'
+import { loadingdirective, toast } from 'kf-component-vue'
 
 function install (Vue) {
-  Vue.directive('loading', loadingDirective)
+  Vue.directive('loading', loadingdirective)
   Vue.prototype.$$toast = toast
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="list-item" @click="jump_list">
-    <img :src="list.picUrl" />
+    <img :src="$$pic(list.picUrl)" />
     <div class="con">
       <h3>{{list.topTitle}}</h3>
       <ul>

@@ -5,7 +5,7 @@
     <div class="info">
 
       <div class="content">
-        <img class="album" :src="topinfo.pic_album" />
+        <img class="album" :src="pic" />
         <div class="desc">
           <h3>{{topinfo.ListName}}</h3>
           <p>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <img class="blur" :src="topinfo.pic_album" />
+      <img class="blur" :src="pic" />
     </div>
 
     <div class="all">
@@ -47,16 +47,19 @@ export default {
     return {
       topList: {},
       songList: [],
-      topinfo: {}
+      topinfo: {},
+      pic: ''
     }
   },
   async mounted () {
     let id = this.$route.query.topid
     let res = await this.jsonp(api.topList_songList(id))
+    console.log(res)
 
     this.topList = res
     this.songList = res.songlist
     this.topinfo = res.topinfo
+    this.pic = this.$$pic(this.topinfo.pic_album)
 
     this.$store.commit('topList', this.songList)
 
@@ -66,7 +69,7 @@ export default {
   },
   methods: {
     async jsonp (url) {
-      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback' })
+      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback', jsonpCallback: 'getCallBack' })
       let res = await pro.data
       return res
     },

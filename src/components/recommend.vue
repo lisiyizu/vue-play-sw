@@ -3,7 +3,7 @@
     <div class="swipe">
       <mt-swipe>
         <mt-swipeItem v-for="(item,index) in slider" :key="index">
-          <a :href="item.linkUrl"><img :src="item.picUrl" /></a>
+          <a :href="item.linkUrl"><img :src="$$pic(item.picUrl)" /></a>
         </mt-swipeItem>
       </mt-swipe>
     </div>
@@ -14,7 +14,7 @@
       <ul>
         <li v-for="(item, index) in radioList" @click="radio(index)">
           <div class="pic">
-            <img :src="item.picUrl" />
+            <img :src= "$$pic(item.picUrl)" />
             <i class="iconfont icon-zanting1"></i>
           </div>
           <h3 class="item_title">{{item.Ftitle}}</h3>
@@ -34,8 +34,8 @@ import api from '../fetch/api'
 export default {
   data () {
     return {
-      slider: {},
-      radioList: {}
+      slider: [],
+      radioList: []
     }
   },
   async mounted () {
@@ -44,13 +44,15 @@ export default {
     this.slider = data.slider
     this.radioList = data.radioList
 
+    console.log(this.radioList)
+
     // this.$nextTick(() => {
     //   this.visible = false
     // })
   },
   methods: {
     async jsonp (url) {
-      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback' })
+      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback', jsonpCallback: 'getCallBack' })
       let res = await pro.data
       return res
     },

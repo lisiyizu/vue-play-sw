@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     async jsonp (url) {
-      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback' })
+      let pro = await this.$http.jsonp(url, { jsonp: 'jsonpCallback', jsonpCallback: 'getCallBack' })
       let res = await pro.data
       return res
     }

@@ -25,7 +25,7 @@ new Vue({
 // serviceWorker
 //
 if ('serviceWorker' in navigator) {
-  console.log('service-worker.js 第十一次修改, 设置返回的jsonp回调函数名')
+  console.log('service-worker.js 第十二修改, 优化缓存策略')
   navigator.serviceWorker.register('service-worker.js', {
     scope: '/vue-play-pwa/'
   }).then(function (registration) {

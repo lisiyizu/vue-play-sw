@@ -110,8 +110,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       minify: true,
       stripPrefix: 'dist/',
       runtimeCaching: [{
-          handler: 'cacheFirst',
-          urlPattern: /(\.jpg|\.fcg)/
+          handler: 'fastest',
+          urlPattern: /(.)/
       }]
     })
   ]
